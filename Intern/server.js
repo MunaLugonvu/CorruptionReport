@@ -3,5 +3,6 @@ let MongoClient = require('mongodb').MongoClient;
 let bodyParser = require('body-parser');
 let app = express();
 
-const port = 8000;
+let port = 8000;
+require('./app/routes')(app,{});
 app.listen(port, () => {  console.log('We are live on ' + port);});
