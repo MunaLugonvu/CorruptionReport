@@ -5,13 +5,15 @@
   "main": "app.js",
   "scripts": {
     "dev": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "lint": "./node_modules/.bin/eslint app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "chai": "^4.2.0",
+    "dotenv": "^8.2.0",
     "eslint": "^6.8.0",
     "mocha": "^7.0.0",
     "nodemon": "^2.0.2"
@@ -19,6 +21,7 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
-    "mongodb": "^2.2.16"
+    "mongodb": "^2.2.16",
+    "mongoose": "^5.8.9"
   }
 }

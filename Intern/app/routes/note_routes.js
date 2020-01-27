@@ -3,4 +3,5 @@ module.exports = function(app,db){
         //creating note
         res.send('Hi')
     });
+    
 };
