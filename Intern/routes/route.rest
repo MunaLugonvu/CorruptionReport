@@ -1,0 +1,18 @@
+GET http://localhost:3000/interventions
+
+###
+GET  http://localhost:3000/interventions/5e2eeede20c2ad0ca8d702b5
+
+
+###
+POST http://localhost:3000/interventions
+Content-Type: application/json
+
+{  
+  "createdBy": "1",
+  "tittle": "Bad Roads",
+  "type": "intervention",
+  "location": "Kampala",
+  "status": "Draft",
+  "comment": "The water was too much."
+}
