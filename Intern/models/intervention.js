@@ -9,8 +9,9 @@ let interventionSchema = new mongoose.Schema({
 
     },
     createdBy:{
-        type: Number,
-        required: true
+        type: Schema.types.ObjectId,
+        required: true,
+        ref: 'User'
 
     },
     tittle:{
@@ -20,6 +21,7 @@ let interventionSchema = new mongoose.Schema({
     },
     type:{
         type: String,
+        enum:['redfag','intervention'],
         required: true
     },
     location:{
@@ -28,6 +30,7 @@ let interventionSchema = new mongoose.Schema({
     },
     status:{
         type: String,
+        enum: ['draft','Under Investigation','resolved', 'rejected'],
         required: true
 
     },

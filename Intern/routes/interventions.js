@@ -34,9 +34,8 @@ router.post('/', async(req, res) => {
         status:req.body.status,
         comment:req.body.comment
       })
-    
-      try {
-        const newIntervention = await intervention.save()
+     try {
+        let newIntervention = await intervention.save()
         res.status(201).json(newIntervention)
       } catch (err) {
         res.status(400).json({ message: err.message })
@@ -47,27 +46,26 @@ router.post('/', async(req, res) => {
 // Update one intervention
 router.patch('/:id',getIntervention, async(req, res) => {
     if (req.body.createdBy != null) {
-        res.intervention.createdBy= req.body.createdBy
+        res.intervention.createdBy = req.body.createdBy
       }
     
       if (req.body.tittle != null) {
-        res.intervention.tittle= req.body.tittle
+        res.intervention.tittle = req.body.tittle
       }
-      if (req.body.type!= null) {
-        res.intervention.type= req.body.type
+      if (req.body.type != null) {
+        res.intervention.type = req.body.type
       }
       if (req.body.location != null) {
-        res.intervention.location= req.body.location
+        res.intervention.location = req.body.location
       }
       if (req.body.status != null) {
-        res.intervention.status= req.body.status
+        res.intervention.status = req.body.status
       }
 
       if (req.body.comment != null) {
-        res.intervention.comment= req.body.comment
+        res.intervention.comment = req.body.comment
       }
-
-      try {
+      try{
         let updatedIntervention = await res.intervention.save()
         res.json(updatedIntervention)
       } catch {
@@ -77,6 +75,7 @@ router.patch('/:id',getIntervention, async(req, res) => {
 })
 
 // Delete one intervention
+
 router.delete('/:id', getIntervention,async(req, res) => {
     try {
         await res.intervention.remove()

@@ -12,9 +12,9 @@ POST http://localhost:3000/interventions
 Content-Type: application/json
 
 {  
-  "createdBy": "1",
+  "createdBy": "7",
   "tittle": "Bad Roads",
-  "type": "intervention",
+  "type": "red flag",
   "location": "Kampala",
   "status": "Draft",
   "comment": "The water was too much."
@@ -23,14 +23,32 @@ Content-Type: application/json
 ###
 
 
-PATCH http://localhost:3000/interventions/5e2f1e47522f4918a8093e3b
+PATCH   http://localhost:3000/interventions/5e316ae2d677b415648c6d4d
 Content-Type: application/json 
 
-{  "createdBy":"1",
+{  "createdBy":"6",
    "tittle": "Bad Roads",
    "type": "intervention",
    "location": "Masaka",
-   "status": "Draft",
-   "comment": "The water was too much."
-
+   "status": "draft",
+   "comment": "The water was to much."
 }
+###
+
+//POST  http://localhost:3000/users
+//Content-Type: application/json
+
+
+//{  "firstname": "Lugonvu",
+   //"lastname": "Mayimuna",
+  // "/email":"munalugonvu@gmail.com",
+  // "phoneNumber": "0700255935",
+   //"username": "munalugonvu",
+  // "password": "1221maakk. "
+}
+###
+
+
+
+
+###
