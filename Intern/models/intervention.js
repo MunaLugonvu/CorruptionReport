@@ -9,7 +9,7 @@ let interventionSchema = new mongoose.Schema({
 
     },
     createdBy:{
-        type: Schema.types.ObjectId,
+        type: Number,
         required: true,
         ref: 'User'
 
