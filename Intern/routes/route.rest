@@ -1,14 +1,14 @@
-GET http://localhost:3000/interventions
+GET http://localhost:8000/interventions
 
 ###
-GET  http://localhost:3000/interventions/5e2eeede20c2ad0ca8d702b5
+GET  http://localhost:8000/interventions/5e2eeede20c2ad0ca8d702b5
 
 ###
-DELETE http://localhost:3000/interventions/5e2f1b1e1ce5611fb08b9cf3
+DELETE http://localhost:8000/interventions/5e2f1b1e1ce5611fb08b9cf3
 
 
 ###
-POST http://localhost:3000/interventions
+POST http://localhost:8000/interventions
 Content-Type: application/json
 
 {  
@@ -23,7 +23,7 @@ Content-Type: application/json
 ###
 
 
-PATCH   http://localhost:3000/interventions/5e316ae2d677b415648c6d4d
+PATCH   http://localhost:8000/interventions/5e316ae2d677b415648c6d4d
 Content-Type: application/json 
 
 {  "createdBy":"6",
@@ -34,15 +34,15 @@ Content-Type: application/json
    "comment": "The water was to much."
 }
 ###
-POST  http://localhost:3000/auth/signup
+POST  http://localhost:8000/auth/signup
 Content-Type: application/json
 
-{  "firstname": "Lugonvu",
-   "lastname": "Mayimuna",
+{  "firstName": "Lugonvu",
+   "lastName": "Mayimuna",
    "email":"munalugonvu@gmail.com",
    "phoneNumber": "0700255935",
    "userName": "muna3lugonvu",
-   "password": "1221maakk. "
+   "password": "122156mm "
 }
 ###
 
