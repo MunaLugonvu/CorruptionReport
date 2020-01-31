@@ -32,20 +32,11 @@ router.post('/', async(req, res) => {
         type:req.body.type,
         location:req.body.location,
         status:req.body.status,
-        images:req.body.images,
-       // videos:req.body.videos,
         comment:req.body.comment
       })
-      intervention.images.data = fs.readFileSync('../image');
-      intervention.images.contentType = 'jpg';
-      intervention.save(function(err, interventions) {
-          if (err) return console.error(err);
-          console.dir(interventions)})
-      
-      
-     try {
+      try {
         let newIntervention = await intervention.save()
-        res.status(201).json({message:"Intervention created!",newIntervention});
+        res.status(201).json({newIntervention});
       } catch (err) {
         res.status(400).json({ message: err.message })
       }
