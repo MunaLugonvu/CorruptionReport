@@ -40,7 +40,7 @@ describe('/GET interventions', function() {
         it('it should post an intervention', function()  {
         chai.request(server)
             .post('/interventions')
-            .send(interventions)
+            //.send(interventions)
             .end(function(err, res) {
                   res.should.have.status(200);
                   res.body.should.have.property('createdBy')
@@ -59,6 +59,40 @@ describe('/GET interventions', function() {
             });
         });
     
+         /*
+  * Test the /DELETE/:id route
+  */
+  describe('/DELETE/:id interventions', () => {
+    it('it should DELETE an intervention given the id', (done) => {
+        let intervention = new interventions({
+        createdBy: "7",
+        tittle: "Bad Roads",
+        type: "red flag",
+        location: "Kampala",
+        status: "Draft",
+        comment: "The water was too much." 
+    })
+        intervention.save((err, intervention) => {
+              chai.request(server)
+              .delete('/interventions/:id')
+              .end((err, res) => {
+                    res.should.have.status(500);
+                   // res.body.should.be.a('object');
+                    res.body.should.have.property('message').eql(' Deleted This Intervention!');
+                   
+                done();
+              });
+        });
+    });
+});
+
+
+
+
+
+
+
+
     
 
 module.exports = server;
