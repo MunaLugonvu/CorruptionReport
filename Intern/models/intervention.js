@@ -35,11 +35,13 @@ let interventionSchema = new mongoose.Schema({
 
     },
     images:{
-        type: Buffer,
+        type: String,
+        data: Buffer,
         required: false
     },
     videos:{
-        type: Buffer,
+        type: String,
+        data: Buffer,
         required: false
 
     },

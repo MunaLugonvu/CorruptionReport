@@ -26,7 +26,7 @@ Content-Type: application/json
 PATCH   http://localhost:8000/interventions/5e316ae2d677b415648c6d4d
 Content-Type: application/json 
 
-{  "createdBy":"6",
+{  "createdBy":"7",
    "tittle": "Bad Roads",
    "type": "intervention",
    "location": "Masaka",
@@ -39,14 +39,32 @@ Content-Type: application/json
 
 {  "firstName": "Lugonvu",
    "lastName": "Mayimuna",
-   "email":"munalugonvu@gmail.com",
+   "email":"munalugou@gmail.com",
    "phoneNumber": "0700255935",
-   "userName": "muna3lugonvu",
+   "userName": "muna3lujonvu",
    "password": "122156mm "
 }
 ###
+POST  http://localhost:8000/auth/signin
+Content-Type: application/json
+
+{ 
+   "email":"munalugonvu@gmail.com",
+   "password":"122156mm"
+}
+
+###
+PUT   http://localhost:8000/auth/update-user/5e330d8642d0b108b8ed3525
+Content-Type: application/json
+
+{
+    "firstName": "mona"
+}
 
 
 
 
 ###
+GET http://localhost:8000/auth
+###
+DELETE http://localhost:8000/auth/delete-user/5e330d8642d0b108b8ed3525

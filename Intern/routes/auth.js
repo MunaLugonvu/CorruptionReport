@@ -61,7 +61,7 @@ router.post("/signup",
     });
     }
 });
-
+//login
 router.post("/signin", (req, res, next) => {
     let getUser;
     User.findOne({
@@ -115,7 +115,7 @@ router.route('/update-user/:id').put((req, res, next) => {
     }, (error, data) => {
         if (error) {
             return next(error);
-            console.log(error)
+            
         } else {
             res.json(data)
             console.log('User successfully updated!')
@@ -135,5 +135,19 @@ router.route('/user-profile/:id').get(authorize, (req, res, next) => {
         }
     })
 })
+// Delete User
+router.route('/:id').delete((req, res, next) => {
+    UserS.findByIdAndDelete(req.params.id, (error, data) => {
+        if (error) {
+            return next(error);
+        } else {
+            res.status(200).json(
+                 data)
+             console.log("User deleted")
+        }
+    })
+})
+
+
 
 module.exports = router;
