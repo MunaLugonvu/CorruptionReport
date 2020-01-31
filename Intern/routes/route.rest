@@ -1,10 +1,10 @@
 GET http://localhost:8000/interventions
 
 ###
-GET  http://localhost:8000/interventions/5e2eeede20c2ad0ca8d702b5
+GET  http://localhost:8000/interventions/5e3054ea08359e0a543553d7
 
 ###
-DELETE http://localhost:8000/interventions/5e2f1b1e1ce5611fb08b9cf3
+DELETE http://localhost:8000/interventions/5e3056fd08359e0a543553d8
 
 
 ###
@@ -14,8 +14,8 @@ Content-Type: application/json
 {  
   "createdBy": "7",
   "tittle": "Bad Roads",
-  "type": "red flag",
-  "location": "Kampala",
+  "type": "redflag",
+  "location": "Kitugum",
   "status": "Draft",
   "comment": "The water was too much."
 }
@@ -37,20 +37,20 @@ Content-Type: application/json
 POST  http://localhost:8000/auth/signup
 Content-Type: application/json
 
-{  "firstName": "Lugonvu",
-   "lastName": "Mayimuna",
-   "email":"munalugou@gmail.com",
-   "phoneNumber": "0700255935",
-   "userName": "muna3lujonvu",
-   "password": "122156mm "
+{  "firstName": "Lungnvu",
+   "lastName": "Mayimjnvhuna",
+   "email":"muna@gmail.com",
+   "phoneNumber": "0700825ngc5935",
+   "userName": "mincuk2121",
+   "password": "12215hfgh6"
 }
 ###
 POST  http://localhost:8000/auth/signin
 Content-Type: application/json
 
 { 
-   "email":"munalugonvu@gmail.com",
-   "password":"122156mm"
+   "email":"munalngujgfoku@gmail.com",
+   "password":"12215hfgh6hkmhjfhjm "
 }
 
 ###
@@ -58,7 +58,7 @@ PUT   http://localhost:8000/auth/update-user/5e330d8642d0b108b8ed3525
 Content-Type: application/json
 
 {
-    "firstName": "mona"
+    "firstName": "lucky"
 }
 
 
@@ -67,4 +67,4 @@ Content-Type: application/json
 ###
 GET http://localhost:8000/auth
 ###
-DELETE http://localhost:8000/auth/delete-user/5e330d8642d0b108b8ed3525
+DELETE http://localhost:8000/auth/delete-user/m5e330d8642d0b108b8ed3525

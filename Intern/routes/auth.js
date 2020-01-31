@@ -98,56 +98,8 @@ router.post("/signin", (req, res, next) => {
         });
     });
 });
-// Get Users
-router.route('/').get((req, res) => {
-    User.find((error, response) => {
-        if (error) {
-            return next(error)
-        } else {
-            res.status(200).json(response)
-        }
-    })
-})
-//update User
-router.route('/update-user/:id').put((req, res, next) => {
-    User.findByIdAndUpdate(req.params.id, {
-        $set: req.body
-    }, (error, data) => {
-        if (error) {
-            return next(error);
-            
-        } else {
-            res.json(data)
-            console.log('User successfully updated!')
-        }
-    })
-})
+
 
 // Get User Profile
-router.route('/user-profile/:id').get(authorize, (req, res, next) => {
-    User.findById(req.params.id, (error, data) => {
-        if (error) {
-            return next(error);
-        } else {
-            res.status(200).json({
-                msg: data
-            })
-        }
-    })
-})
-// Delete User
-router.route('/:id').delete((req, res, next) => {
-    UserS.findByIdAndDelete(req.params.id, (error, data) => {
-        if (error) {
-            return next(error);
-        } else {
-            res.status(200).json(
-                 data)
-             console.log("User deleted")
-        }
-    })
-})
-
-
 
 module.exports = router;
