@@ -2,7 +2,10 @@ let express = require('express')
 let router = express.Router()
 let Intervention = require('../models/intervention')
 
-
+let multer = require('multer')
+let upload = multer({
+      dest: 'uploads/'
+});
 
 
 // Get all interventions
@@ -23,7 +26,8 @@ router.get('/:id',getIntervention, (req, res) => {
 })
 
 // Create one intervention
-router.post('/', async(req, res) => {
+router.post('/',upload.single('image'), async(req, res) => {
+  console.log(req.file);
     let intervention = new Intervention({
         
         createdOn:req.body.createdOn,
@@ -32,11 +36,12 @@ router.post('/', async(req, res) => {
         type:req.body.type,
         location:req.body.location,
         status:req.body.status,
-        comment:req.body.comment
+        comment:req.body.comment,
+
       })
       try {
         let newIntervention = await intervention.save()
-        res.status(201).json({newIntervention});
+        res.status(201).json({message : 'Intervention succesfully created', newIntervention});
       } catch (err) {
         res.status(400).json({ message: err.message })
       }
