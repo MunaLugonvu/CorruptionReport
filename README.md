@@ -22,6 +22,30 @@ This is for when one would like to run the app on their local machine
        <td> GET</td>
        <td> Gets a list of all interventions</td>
     </tr>
-    
+    <tr>
+        <td>/interventions</td>
+        <td> POST</td>
+        <td> Creates a new intervention</td>
+     </tr>
+     <tr>
+        <td>/interventions/id</td>
+        <td> GET</td>
+        <td> Gets a specific intervention</td>
+     </tr>
+     <tr>
+        <td>/interventions/id</td>
+        <td> PATCH</td>
+        <td> Updates a given intervention</td>
+     </tr>
+     <tr>
+        <td>/auth/signup</td>
+        <td> POST </td>
+        <td>Creates a new user</td>
+     </tr>
+     <tr>
+        <td>/auth/signin</td>
+        <td> POST</td>
+        <td> Logs in a user</td>
+     </tr>
 </table>
 
