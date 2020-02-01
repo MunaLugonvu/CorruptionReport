@@ -1,12 +1,12 @@
 require('dotenv').config()
 let joi = require('joi');
-//joi.objectid = require('joi-objectid')(joi);
 let express = require('express');
 let mongoose = require('mongoose')
 let bodyParser = require('body-parser');
+
+
 let users = require('./routes/auth');
 let interventionsRouter = require('./routes/interventions');
-
 
 let app = express();
 
@@ -17,7 +17,6 @@ db.on('error', (error) => console.error(error))
 db.once('open', () => console.log('connected to database'))
 
 app.use(bodyParser.json());
-
 app.use(express.json())
 
 
@@ -27,8 +26,10 @@ app.get('/', (req,res,next) =>{
 })
 ;
 
-app.use('/interventions', interventionsRouter)
+
 app.use('/auth',users);
+app.use('/interventions', interventionsRouter)
+
 
 
 

@@ -4,102 +4,101 @@ let router = express.Router()
 let authorize = require('../middleware/authen')
 let bcrypt = require('bcryptjs');
 let jwt = require('jsonwebtoken');
-let { check, validationResult } = require('express-validator');
 
-router.post("/signup",
-[     check('firstName')
-        .not()
-       .isEmpty(),
-    check('lastName')
-       .not()
-       .isEmpty(),
-    check('email', 'Email is required')
-       .not()
-       .isEmpty(),
-       check('phoneNumber', 'phoneNumber is required')
-       .not()
-       .isEmpty(),
-    check('userName')
-        .not()
-        .isEmpty()
-        .isLength({ min: 5 })
-        .withMessage('userName must be atleast 5 characters long'),
-   
-    check('password', 'Password should be atleast  8 characters long')
-        .not()
-        .isEmpty()
-        .isLength({ min: 8, max: 1024 })
-],
- (req, res, next) => {
-     let  errors = validationResult(req);
-    console.log(req.body);
 
-    if (!errors.isEmpty()) {
-        return res.status(422).json(errors.array());
-    }
-    else {
-    bcrypt.hash(req.body.password, 10).then((hash) => {
-        let user = new User ({
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            email: req.body.email,
-            phoneNumber: req.body.phoneNumber,
-            userName: req.body.userName,
-            password: hash
-        });
-        user.save().then((response) => {
-            res.status(201).json({
-                
-                message: "User created Sucessfully!",
-                result: response
-            });
-        }).catch(error => {
-            res.status(500).json({
-                error: error
-            });
-        });
-    });
-    }
-});
-//login
-router.post("/signin", (req, res, next) => {
-    let getUser;
-    User.findOne({
+router.post("/signup",(req, res, next) => {
+    User.find({
         email: req.body.email
-    }).then(user => {
-        if (!user) {
-            return res.status(401).json({
-                message: "Authentication failed"
+    })
+    .exec()
+    .then(user =>{
+        if(user.length >= 1){
+            return res.status((409)).json({
+                message: " email exists"
+            })
+        } else {
+            bcrypt.hash(req.body.password,10,(err,hash) => {
+                if(err) {
+                    return res.status(500).json({
+                        error:err
+                    });
+                } else{
+            
+            let user = new User ({
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                email: req.body.email,
+                phoneNumber: req.body.phoneNumber,
+                userName: req.body.userName,
+                password: hash
+            });
+            user.save()
+            .then(result =>{
+                console.log(result);
+                res.status(500).json({
+                    message: 'User created'
+                });
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(500).json({
+                    error:err
+                });
+            });
+                }
             });
         }
-        getUser = user;
-        return bcrypt.compare(req.body.password, user.password);
-    }).then(response => {
-        if (!response) {
+    })
+ 
+});
+    
+//login
+router.post('/signin', (req,res,next) =>{
+    User.find({email:req.body.email})
+    .exec()
+    .then(user => {
+        if(user.length < 1){
             return res.status(401).json({
-                message: "Authentication failed"
-            });
+                message: 'Authentication Failed!'
+            })
         }
-
-        let jwtToken = jwt.sign({
-            email: getUser.email,
-            userId: getUser._id
-        }, "longer-secret-is-better", {
-            expiresIn: "1h"
+        bcrypt.compare(req.body.password, user[0].password,(err,res)=> {
+            if(err){
+                return res.status(401).json({
+                    message: 'Authentication Failed!'
+            })
+        }
+        if(user){
+          let token =  jwt.sign(
+            {
+                email:user[0].email
+            },
+            "randomString",
+            
+            
+            {
+                expiresIn: "1h"
+            }
+            );
+            return res.status(200).json({
+                message: 'Authentication succesfull!',
+                token: token
         });
-        res.status(200).json({
-            token: jwtToken,
-            expiresIn: 3600,
-            msg: getUser
-        });
-    }).catch(err => {
-        return res.status(401).json({
-            message: "Authentication failed"
+        }
+        })
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({
+            error:err
         });
     });
-});
+})
 
 
-// Get User Profile
+
+
+
+
 
 module.exports = router;
